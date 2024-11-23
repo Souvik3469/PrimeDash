@@ -41,7 +41,7 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="flex flex-col flex-1">
         <Navbar />
-        <div className="flex-1 bg-gray-100 p-4">
+        <div className="flex-1 bg-[#696FFB0A] p-4">
           <Comp1 />
           <Comp2 />
           <Comp3 />

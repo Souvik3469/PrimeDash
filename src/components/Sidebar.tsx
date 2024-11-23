@@ -213,9 +213,19 @@ const Sidebar: React.FC = () => {
               </div>
             </li>
           </ul>
-          <div className="flex absolute bottom-0 p-1 ">
-            <ThemeToggleButton />
-          </div>
+          {!isExpanded ? (
+            <div className="flex  justify-center items-center fixed bottom-0 py-1 px-3 ">
+              <ThemeToggleButton />
+            </div>
+          ) : (
+            <div className="flex  justify-center items-center fixed bottom-0 py-1 px-3 ">
+              <div className="flex justify-between items-center text-sm text-gray-600">
+                <span className="m-2">Light</span>
+                <ThemeToggleButton />
+                <span className="m-2">Dark</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </aside>

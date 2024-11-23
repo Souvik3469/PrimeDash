@@ -33,20 +33,21 @@ const ThemeToggleButton = () => {
     <div className="flex justify-center items-center w-10">
       <button
         onClick={toggleTheme}
-        className="p-1 bg-gray-300 rounded-full dark:bg-gray-700 transition-all duration-300"
+        className="p-0.5 bg-[#696FFB] rounded-full transition-all duration-300"
       >
-        <div className="relative w-8 h-5">
-          {/* Circle movement animation */}
+        <div className="relative w-9 h-5">
+          {/* White Circle Movement */}
           <div
-            className={`absolute w-3 h-3 bg-yellow-500 dark:bg-blue-500 rounded-full transition-all duration-300 ${
-              isDarkMode ? "transform translate-x-4" : ""
+            className={`absolute w-[18px] h-[18px] top-[1px] bg-white rounded-full transition-all duration-300 z-10 ${
+              isDarkMode ? "transform translate-x-[18px]" : ""
             }`}
           ></div>
-          <div
-            className={`absolute inset-0 flex justify-center items-center text-sm text-gray-700 dark:text-white transition-all duration-300`}
-          >
-            {isDarkMode ? <FaMoon /> : <FaSun />}
-          </div>
+
+          {/* Moon Icon */}
+          <FaMoon className="absolute right-[2px] top-1  text-yellow-300 transition-all duration-300 z-0 text-xs" />
+
+          {/* Sun Icon */}
+          <FaSun className="absolute left-[2px] top-1  text-yellow-300 transition-all duration-300 z-0 text-xs" />
         </div>
       </button>
     </div>
