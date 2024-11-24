@@ -26,8 +26,30 @@ ChartJS.register(
   Filler
 );
 
+const LineChart: React.FC<{ data: any; options: any; plugins?: any[] }> = ({
+  data,
+  options,
+  plugins = [],
+}) => (
+  <div className="flex h-[230px] justify-center items-center">
+    <Line data={data} options={options} plugins={plugins} />
+  </div>
+);
+
+const RadarChart: React.FC<{ data: any; options: any }> = ({
+  data,
+  options,
+}) => (
+  <div className="flex h-[230px] justify-center items-center">
+    <Radar data={data} options={options} />
+  </div>
+);
+
 const Comp2: React.FC = () => {
   const { isDarkMode } = useTheme();
+
+  const commonTextColor = isDarkMode ? "#FFFFFF99" : "#00000099";
+  const commonGridColor = isDarkMode ? "#2f2f38" : "#dcdce8";
 
   const lineChartData = {
     labels: [
@@ -73,16 +95,12 @@ const Comp2: React.FC = () => {
       legend: {
         position: "top" as const,
         labels: {
-          color: isDarkMode ? "#FFFFFF99" : "#00000099",
+          color: commonTextColor,
           boxWidth: 6,
           boxHeight: 6,
           usePointStyle: true,
         },
       },
-      // title: {
-      //   display: true,
-      //   text: "Revenue vs Target "
-      // },
     },
     layout: {
       padding: {
@@ -95,21 +113,21 @@ const Comp2: React.FC = () => {
         title: {
           display: true,
           text: "Months",
-          color: isDarkMode ? "#FFFFFF99" : "#00000099",
+          color: commonTextColor,
         },
         ticks: {
-          color: isDarkMode ? "#FFFFFF99" : "#00000099",
+          color: commonTextColor,
         },
       },
       y: {
         title: {
           display: true,
           text: "Revenue ($K)",
-          color: isDarkMode ? "#FFFFFF99" : "#00000099",
+          color: commonTextColor,
         },
         ticks: {
           stepSize: 10,
-          color: isDarkMode ? "#FFFFFF99" : "#00000099",
+          color: commonTextColor,
         },
       },
     },
@@ -130,7 +148,7 @@ const Comp2: React.FC = () => {
   };
 
   const radarChartData = {
-    labels: ["Asia", "Europe", "Americans", "Africa", "Middle East", "Pacific"],
+    labels: ["Asia", "Europe", "Americas", "Africa", "Middle East", "Pacific"],
     datasets: [
       {
         label: "Sales by Region",
@@ -149,19 +167,11 @@ const Comp2: React.FC = () => {
         position: "top" as const,
         display: false,
       },
-      // title: {
-      //   display: true,
-      //   text: "Sales by Region",
-      // },
-      labels: {
-        color: isDarkMode ? "#FFFFFF99" : "#00000099",
-      },
     },
     scales: {
       r: {
         angleLines: {
           display: true,
-          // color: isDarkMode ? "#FFFFFF99" : "#00000099",
         },
         beginAtZero: true,
         ticks: {
@@ -169,10 +179,10 @@ const Comp2: React.FC = () => {
           stepSize: 20,
         },
         pointLabels: {
-          color: isDarkMode ? "#FFFFFF99" : "#00000099",
+          color: commonTextColor,
         },
         grid: {
-          color: isDarkMode ? "#2f2f38" : "#dcdce8",
+          color: commonGridColor,
         },
       },
     },
@@ -182,20 +192,15 @@ const Comp2: React.FC = () => {
     <div className="grid grid-cols-12 gap-6 mx-2 pb-6">
       <div className="bg-white dark:bg-[#1F214A] dark:border-[#1F214A] dark:text-white border-2 border-gray-200 p-4 rounded-lg col-span-12 md:col-span-7 lg:col-span-8">
         <h2 className="text-xl font-bold mb-4">Total Revenue vs Target</h2>
-        <div className="flex h-[230px] justify-center items-center">
-          <Line
-            data={lineChartData}
-            options={lineChartOptions}
-            plugins={[chartAreaBackground]}
-          />
-        </div>
+        <LineChart
+          data={lineChartData}
+          options={lineChartOptions}
+          plugins={[chartAreaBackground]}
+        />
       </div>
-
       <div className="bg-white dark:bg-[#1F214A] dark:border-[#1F214A] dark:text-white border-2 border-gray-200 p-4 rounded-lg col-span-12 md:col-span-5 lg:col-span-4">
         <h2 className="text-xl font-bold mb-4">Sales by Region</h2>
-        <div className="flex h-[230px] justify-center items-center">
-          <Radar data={radarChartData} options={radarChartOptions} />
-        </div>
+        <RadarChart data={radarChartData} options={radarChartOptions} />
       </div>
     </div>
   );
