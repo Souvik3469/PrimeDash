@@ -3,11 +3,11 @@ import CountryPicker from "./CountryPicker";
 import avatar from "../assets/avatar.jpg";
 
 const Navbar: React.FC = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-  };
+  // const toggleMobileMenu = () => {
+  //   setIsMobileMenuOpen((prev) => !prev);
+  // };
 
   return (
     <header className="bg-white dark:bg-[#1F214A] h-16 flex justify-between items-center border-b border-[#00000029] dark:border-[#1F214A] dark:border-l dark:border-[#FFFFFF29] dark:text-white">
