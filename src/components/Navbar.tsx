@@ -10,9 +10,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="bg-white h-16 flex justify-between items-center border-b border-gray-200">
-      {/* Logo */}
-      <div className="flex w-[90%] h-full  border-r border-gray-200 justify-between items-center">
+    <header className="bg-white dark:bg-[#1F214A] h-16 flex justify-between items-center border-b border-[#00000029] dark:border-[#1F214A] dark:border-l dark:border-[#FFFFFF29] dark:text-white">
+      <div className="flex w-[90%] h-full  border-r border-[#00000029] dark:border-[#FFFFFF29] justify-between items-center">
         <div className="mx-8 text-2xl font-bold"> Dashboard</div>
         <div className=" mx-8">
           <CountryPicker />

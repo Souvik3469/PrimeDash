@@ -3,7 +3,7 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  RadialLinearScale, // Register RadialLinearScale
+  RadialLinearScale,
   LineElement,
   PointElement,
   Title,
@@ -12,12 +12,12 @@ import {
   Filler,
 } from "chart.js";
 import { Line, Radar } from "react-chartjs-2";
+import { useTheme } from "../context/ThemeContext";
 
-// Register required components
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  RadialLinearScale, // Register the radialLinear scale for Radar chart
+  RadialLinearScale,
   LineElement,
   PointElement,
   Title,
@@ -27,7 +27,8 @@ ChartJS.register(
 );
 
 const Comp2: React.FC = () => {
-  // Data for the line chart
+  const { isDarkMode } = useTheme();
+
   const lineChartData = {
     labels: [
       "Jan 2024",
@@ -47,20 +48,20 @@ const Comp2: React.FC = () => {
       {
         label: "Total Revenue",
         data: [40, 50, 60, 45, 70, 55, 75, 65, 80, 60, 85, 70],
-        borderColor: "#696FFB", // Blue line
-        backgroundColor: "#696FFB", // Light blue point background
+        borderColor: "#696FFB",
+        backgroundColor: "#696FFB",
         borderWidth: 2,
         pointRadius: 4,
-        tension: 0, // Zigzag lines
+        tension: 0,
       },
       {
         label: "Total Target",
-        data: [45, 55, 50, 50, 75, 60, 70, 80, 75, 65, 90, 60], // Irregular pattern
-        borderColor: "#FF9E2B", // Yellow line
-        backgroundColor: "#FF9E2B", // Light yellow point background
+        data: [45, 55, 50, 50, 75, 60, 70, 80, 75, 65, 90, 60],
+        borderColor: "#FF9E2B",
+        backgroundColor: "#FF9E2B",
         borderWidth: 2,
         pointRadius: 4,
-        tension: 0, // Zigzag lines
+        tension: 0,
       },
     ],
   };
@@ -72,6 +73,7 @@ const Comp2: React.FC = () => {
       legend: {
         position: "top" as const,
         labels: {
+          color: isDarkMode ? "#FFFFFF99" : "#00000099",
           boxWidth: 6,
           boxHeight: 6,
           usePointStyle: true,
@@ -79,7 +81,7 @@ const Comp2: React.FC = () => {
       },
       // title: {
       //   display: true,
-      //   text: "Revenue vs Target (Zigzag Line Chart)",
+      //   text: "Revenue vs Target "
       // },
     },
     layout: {
@@ -93,21 +95,26 @@ const Comp2: React.FC = () => {
         title: {
           display: true,
           text: "Months",
+          color: isDarkMode ? "#FFFFFF99" : "#00000099",
+        },
+        ticks: {
+          color: isDarkMode ? "#FFFFFF99" : "#00000099",
         },
       },
       y: {
         title: {
           display: true,
           text: "Revenue ($K)",
+          color: isDarkMode ? "#FFFFFF99" : "#00000099",
         },
         ticks: {
           stepSize: 10,
+          color: isDarkMode ? "#FFFFFF99" : "#00000099",
         },
       },
     },
   };
 
-  // Custom plugin for chart area background
   const chartAreaBackground = {
     id: "chartAreaBackground",
     beforeDraw: (chart: any) => {
@@ -116,28 +123,20 @@ const Comp2: React.FC = () => {
         chartArea: { left, right, top, bottom },
       } = chart;
       ctx.save();
-      ctx.fillStyle = "#696FFB0A"; // gray-300
+      ctx.fillStyle = "#696FFB0A";
       ctx.fillRect(left, top, right - left, bottom - top);
       ctx.restore();
     },
   };
 
-  // Data for the radar chart
   const radarChartData = {
-    labels: [
-      "Region 1",
-      "Region 2",
-      "Region 3",
-      "Region 4",
-      "Region 5",
-      "Region 6",
-    ],
+    labels: ["Asia", "Europe", "Americans", "Africa", "Middle East", "Pacific"],
     datasets: [
       {
         label: "Sales by Region",
         data: [65, 59, 80, 81, 56, 55],
-        backgroundColor: "#64A2FF52", // Light blue
-        borderColor: "#696FFB", // Blue border
+        backgroundColor: "#64A2FF52",
+        borderColor: "#696FFB",
         borderWidth: 2,
         pointRadius: 3,
       },
@@ -152,17 +151,28 @@ const Comp2: React.FC = () => {
       },
       // title: {
       //   display: true,
-      //   text: "Sales by Region (Wagon Wheel)",
+      //   text: "Sales by Region",
       // },
+      labels: {
+        color: isDarkMode ? "#FFFFFF99" : "#00000099",
+      },
     },
     scales: {
       r: {
         angleLines: {
           display: true,
+          // color: isDarkMode ? "#FFFFFF99" : "#00000099",
         },
         beginAtZero: true,
         ticks: {
-          display: false, // Hide radial ticks for a cleaner look
+          display: false,
+          stepSize: 20,
+        },
+        pointLabels: {
+          color: isDarkMode ? "#FFFFFF99" : "#00000099",
+        },
+        grid: {
+          color: isDarkMode ? "#2f2f38" : "#dcdce8",
         },
       },
     },
@@ -170,20 +180,18 @@ const Comp2: React.FC = () => {
 
   return (
     <div className="grid grid-cols-12 gap-6 mx-2 pb-6">
-      {/* First Card with Line Chart */}
-      <div className="bg-white border-2 border-gray-200 p-4 rounded-lg col-span-12 md:col-span-7 lg:col-span-8">
+      <div className="bg-white dark:bg-[#1F214A] dark:border-[#1F214A] dark:text-white border-2 border-gray-200 p-4 rounded-lg col-span-12 md:col-span-7 lg:col-span-8">
         <h2 className="text-xl font-bold mb-4">Total Revenue vs Target</h2>
         <div className="flex h-[230px] justify-center items-center">
           <Line
             data={lineChartData}
             options={lineChartOptions}
-            plugins={[chartAreaBackground]} // Apply the plugin here
+            plugins={[chartAreaBackground]}
           />
         </div>
       </div>
 
-      {/* Second Card with Radar Chart */}
-      <div className="bg-white border-2 border-gray-200 p-4 rounded-lgcol-span-12 md:col-span-5 lg:col-span-4">
+      <div className="bg-white dark:bg-[#1F214A] dark:border-[#1F214A] dark:text-white border-2 border-gray-200 p-4 rounded-lg col-span-12 md:col-span-5 lg:col-span-4">
         <h2 className="text-xl font-bold mb-4">Sales by Region</h2>
         <div className="flex h-[230px] justify-center items-center">
           <Radar data={radarChartData} options={radarChartOptions} />
