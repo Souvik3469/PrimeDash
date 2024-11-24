@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+# PrimeDash 📈
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PrimeDash offers an advanced dashboard for monitoring various statistics and user-traffic with awesome user experience.
 
-Currently, two official plugins are available:
+## Authors
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [@Souvik3469](https://github.com/Souvik3469)(Souvik Sen)
 
-## Expanding the ESLint configuration
+## Prototype Demo 
+https://prime-dash-henna.vercel.app/
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
+- FrontEnd: ReactJs, Vite, Tailwind Css, Typescript, Context-api, Chartjs
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Features
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### DashBoard: 
+![LightTheme1](https://github.com/Souvik3469/PrimeDash/blob/main/public/SS/light1.png)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+![LightTheme2](https://github.com/Souvik3469/PrimeDash/blob/main/public/SS/light4.png)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### DarkTheme: 
+![DarkTheme1](https://github.com/Souvik3469/PrimeDash/blob/main/public/SS/dark1.png)
+
+![DarkTheme2](https://github.com/Souvik3469/PrimeDash/blob/main/public/SS/dark4.png)
+
+  
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
