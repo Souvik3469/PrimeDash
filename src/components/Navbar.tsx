@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CountryPicker from "./CountryPicker";
 import avatar from "../assets/avatar.jpg";
 
