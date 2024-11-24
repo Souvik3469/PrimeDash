@@ -44,7 +44,7 @@ const Comp3: React.FC = () => {
     circumference: 180,
     plugins: {
       legend: {
-        position: "bottom",
+        position: "bottom" as const,
         labels: {
           boxWidth: 5,
           boxHeight: 30,
